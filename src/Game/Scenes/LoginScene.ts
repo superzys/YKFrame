@@ -1,7 +1,7 @@
 import SceneBase = YK.SceneBase
 import EventData = YK.EventData
 
-class LoginScene extends SceneBase
+export default class LoginScene extends SceneBase
 {
     protected firstWind: any = LoginWind
     protected OnInit(param: any)

@@ -1,4 +1,8 @@
 import GameConfig from "./GameConfig";
+import ProtocolDef from "./Game/Defs/ProtocolDef"
+import RoleMode from "./Game/Modes/RoleMode";
+import LoadingScene from "./Game/Scenes/LoadingScene";
+
 class Main {
 	constructor() {
 		//根据IDE设置初始化引擎		
@@ -35,11 +39,12 @@ class Main {
 	}
 	initGame()
     {
+		
         fairygui.UIConfig.globalModalWaiting = "ui://Loading/waitWind"
-		YK.NetMgr.Instance.AddProto("netpack", netpack.ProtocolDef.ProtocolNames)
+		YK.NetMgr.Instance.AddProto("netpack", ProtocolDef.ProtocolNames)
         YK.ModeMgr.Instance.AddMode<RoleMode>(RoleMode)
         YK.ModeMgr.Instance.InitData()
-		YK.SceneMgr.Instance.GoToScene(LoadingScene)
+		YK.SceneMgr.Instance.GoToScene(LoadingScene) 
 		
     }
 }

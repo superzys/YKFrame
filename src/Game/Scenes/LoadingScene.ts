@@ -1,5 +1,8 @@
-
-class LoadingScene extends YK.SceneBase
+import ProtocolDef from "../Defs/ProtocolDef";
+import SceneBase = YK.SceneBase
+import EventData = YK.EventData
+import LoginScene from "./LoginScene";
+export default  class LoadingScene extends SceneBase
 {
     private initNeedLoadTask: YK.LoadGruopInfo
     protected OnInit(param: any)
@@ -33,7 +36,8 @@ class LoadingScene extends YK.SceneBase
     {
         fairygui.UIObjectFactory.setPackageItemExtension(fairygui.UIConfig.globalModalWaiting,WaitWind)
         this.AddProto()
-        netpack.ProtocolDef.Protocols.forEach(element =>
+        
+        ProtocolDef.Protocols.forEach(element =>
         {
             YK.ProtoMap.AddProto(element)
         });
@@ -41,7 +45,7 @@ class LoadingScene extends YK.SceneBase
 
     private AddProto()
     {
-        YK.NetMgr.Instance.AddProto("netpack", netpack.ProtocolDef.ProtocolNames)
+        YK.NetMgr.Instance.AddProto("netpack", ProtocolDef.ProtocolNames)
         this.StartGame()
     }
 

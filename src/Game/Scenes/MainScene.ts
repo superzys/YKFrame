@@ -1,4 +1,4 @@
-class MainScene extends YK.SceneBase
+export default  class MainScene extends YK.SceneBase
 {
     protected firstWind: any = MainWind
     protected OnInit(param: any)
@@ -16,7 +16,7 @@ class MainScene extends YK.SceneBase
         super.OnEnter(param)
     }
 
-    protected OnHandler(ev: EventData)
+    protected OnHandler(ev: YK.EventData)
     {
         super.OnHandler(ev)
     }

@@ -1,5 +1,5 @@
 
-class RoleMode extends YK.IMode
+export default  class  RoleMode extends YK.IMode
 {
     public accountInfo = { userid: 0, token: "" }
     public roleInfo: netpack.UserData

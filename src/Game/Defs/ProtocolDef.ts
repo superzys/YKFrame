@@ -1,6 +1,6 @@
-module netpack
-{
-	export class ProtocolDef 
+// module netpack
+// {
+	export default  class ProtocolDef 
 	{
 		public static ProtocolNames =
 		[
@@ -194,4 +194,4 @@ module netpack
 		}
 
 	}
-}
+// }
