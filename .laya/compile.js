@@ -20,42 +20,44 @@ if (global.publish) {
 
 //===== zys
 //自己全局安装的插件
-let gutil = require(ideModuleDir +  "gulp-util");
-let babel = require("C:\\Users\\zys\\AppData\\Roaming\\npm\\node_modules\\"+ "gulp-babel");
-let ts = require( "gulp-typescript");
-let uglify = require( "gulp-uglify");
+// let gutil = require(ideModuleDir +  "gulp-util");
+// // let babel = require("C:\\Users\\zys\\AppData\\Roaming\\npm\\node_modules\\"+ "gulp-babel");
+// let ts = require("C:\\Users\\zys\\AppData\\Roaming\\npm\\node_modules\\"+ "gulp-typescript");
+// let uglify = require( ideModuleDir + "gulp-uglify");
 
-gutil.log(gutil.colors.red('[log]'), "ideModuleDir is " + ideModuleDir);
+// // gutil.log(gutil.colors.red('[log]'), "ideModuleDir is " + ideModuleDir);
 
-gutil.log(gutil.colors.red('[log]'), "start yk " + workSpaceDir);
-gulp.task("yk", prevTasks, function () {
-	gutil.log(gutil.colors.red('[log]'), "start yk compile");
-	return gulp.src([
-		workSpaceDir + "/libs/*.d.ts",
-		workSpaceDir + "/protobuf/**/*.d.ts",
-		//如果需要加入 配置库 文件
-		workSpaceDir + "/src/YKFarmework/**/*.ts"])
-		.pipe(ts({
-			noImplicitAny: false,
-			outFile: "ykLib.js",
-			target: "es6",
-			lib: ["es6", "dom"],
-			removeComments: true,
-		}))
-		.pipe(babel({
-			presets: ['es2015']
-		}))
-		.pipe(uglify())
-		.on('error', function (err) {
-			gutil.log(gutil.colors.red('[Error]'), err.toString());
-		})
-		.pipe(gulp.dest(workSpaceDir + "/bin/js"))
-});
+// // gutil.log(gutil.colors.red('[log]'), "start yk " + workSpaceDir);
+// console.log("start yk complie");
+// gulp.task("yk", prevTasks, function () {
+// 	// gutil.log(gutil.colors.red('[log]'), "start yk compile");
+// 	return gulp.src([
+// 		workSpaceDir + "/libs/*.d.ts",
+// 		workSpaceDir + "/protobuf/**/*.d.ts",
+// 		//如果需要加入 配置库 文件
+// 		workSpaceDir + "/src/YKFarmework/**/*.ts"])
+// 		.pipe(ts({
+// 			noImplicitAny: false,
+// 			outFile: "ykLib.js",
+// 			target: "es6",
+// 			lib: ["es6", "dom"],
+// 			removeComments: true,
+// 		}))
+// 		// .pipe(babel({
+// 		// 	presets: ['es2015']
+// 		// }))
+// 		// .pipe(uglify())
+// 		.on('error', function (err) {
+// 			console.log(err.toString());
+// 			// gutil.log(gutil.colors.red('[Error]'), err.toString());
+// 		})
+// 		.pipe(gulp.dest(workSpaceDir + "/bin/js"))
+// });
 
-let yktask = ["yk"];
+// let yktask = ["yk"];
 //====
 //使用browserify，转换ts到js，并输出到bin/js目录
-gulp.task("compile", yktask, function () {
+gulp.task("compile", prevTasks, function () {
 	// 发布时调用编译功能，判断是否点击了编译选项
 	if (global.publish && !global.config.compile) {
 		return;

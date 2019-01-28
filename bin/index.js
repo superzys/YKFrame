@@ -18,4 +18,5 @@ loadLib("libs/fairygui/fairygui.min.js");
 loadLib("../protobuf/library/protobuf-library.js");
 loadLib("../protobuf/bundles/protobuf-bundles.js");
 //-----libs-end-------
+loadLib("js/ykLib.js");
 loadLib("js/bundle.js");
