@@ -1,10 +1,4 @@
 import GameConfig from "./GameConfig";
-// import YKs = require("YK");
-import "./YKFarmework/ResMgr/ResMgr"
-import "./YKFarmework/Net/NetMgr"
-import "./YKFarmework/EventMgr/DispatchEventNode"
-import "./YKFarmework/EventMgr/EventListenerMgr"
-
 class Main {
 	constructor() {
 		//根据IDE设置初始化引擎		
@@ -33,9 +27,8 @@ class Main {
 	}
 
 	onConfigLoaded(): void {
-		
-        fairygui.UIConfig.packageFileExtension = "bin"
-        fairygui.UIConfig.bringWindowToFrontOnClick = false
+		fairygui.UIConfig.packageFileExtension = "bin"
+		fairygui.UIConfig.bringWindowToFrontOnClick = false
 		//加载IDE指定的场景
 		GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);
 		this.initGame()

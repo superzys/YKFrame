@@ -6,8 +6,8 @@
 export default class GameConfig{
     static width:number=640;
     static height:number=1136;
-    static scaleMode:string="fixedauto";
-    static screenMode:string="vertical";
+    static scaleMode:string="fixedwidth";
+    static screenMode:string="none";
     static alignV:string="top";
     static alignH:string="left";
     static startScene:any="";

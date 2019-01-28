@@ -12,7 +12,6 @@ loadLib("libs/laya.core.js");
 loadLib("libs/laya.webgl.js");
 loadLib("libs/laya.ui.js");
 loadLib("libs/laya.physics.js");
-loadLib("libs/laya.html.js");
 
 loadLib("libs/rawinflate/rawinflate.min.js");
 loadLib("libs/fairygui/fairygui.min.js");

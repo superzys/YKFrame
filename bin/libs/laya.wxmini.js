@@ -471,7 +471,7 @@ var MiniFileMgr=(function(){
 		(isAutoClear===void 0)&& (isAutoClear=true);
 		MiniFileMgr.wxdown({url:fileUrl,success:function (data){
 				if (data.statusCode===200){
-					if((MiniAdpter.autoCacheFile || isSaveFile)&& readyUrl.indexOf("wx.qlogo.cn")==-1 && readyUrl.indexOf(".php")==-1)
+					if((MiniAdpter.autoCacheFile || isSaveFile)&& readyUrl.indexOf("qlogo.cn")==-1 && readyUrl.indexOf(".php")==-1)
 						MiniFileMgr.copyFile(data.tempFilePath,readyUrl,callBack,"",isAutoClear);
 					else
 					callBack !=null && callBack.runWith([0,data.tempFilePath]);
@@ -830,7 +830,7 @@ var MiniImage=(function(){
 				thisLoader._url=URL.formatURL(thisLoader._url);
 				image=HTMLImage.create(imageSource.width,imageSource.height);
 				image.loadImageSource(imageSource,true);
-				image._setUrl(fileNativeUrl);
+				image._setCreateURL(fileNativeUrl);
 				clear();
 				thisLoader.onLoaded(image);
 			};
@@ -979,6 +979,12 @@ var MiniInput=(function(){
 		}});
 		MiniAdpter.window.wx.onKeyboardConfirm(function(res){
 			var str=res ? res.value :"";
+			if (_inputTarget._restrictPattern){
+				str=str.replace(/\u2006|\x27/g,"");
+				if (_inputTarget._restrictPattern.test(str)){
+					str=str.replace(_inputTarget._restrictPattern,"");
+				}
+			}
 			_inputTarget.text=str;
 			_inputTarget.event(/*laya.events.Event.INPUT*/"input");
 			laya.wx.mini.MiniInput.inputEnter();
@@ -990,6 +996,12 @@ var MiniInput=(function(){
 				if (str.indexOf("\n")!=-1){
 					laya.wx.mini.MiniInput.inputEnter();
 					return;
+				}
+			}
+			if (_inputTarget._restrictPattern){
+				str=str.replace(/\u2006|\x27/g,"");
+				if (_inputTarget._restrictPattern.test(str)){
+					str=str.replace(_inputTarget._restrictPattern,"");
 				}
 			}
 			_inputTarget.text=str;
@@ -1041,9 +1053,10 @@ var MiniLoader=(function(_super){
 		(ignoreCache===void 0)&& (ignoreCache=false);
 		var thisLoader=this;
 		thisLoader._url=url;
+		url=URL.customFormat(url);
 		if (url.indexOf("data:image")===0)thisLoader._type=type=/*laya.net.Loader.IMAGE*/"image";
 		else {
-			thisLoader._type=type || (type=Loader.getTypeFromUrl(url));
+			thisLoader._type=type || (type=Loader.getTypeFromUrl(thisLoader._url));
 		}
 		thisLoader._cache=cache;
 		thisLoader._data=null;
@@ -1089,6 +1102,13 @@ var MiniLoader=(function(_super){
 							var newfileHead=MiniAdpter.subMaps[curfileHead];
 							url=url.replace(curfileHead,newfileHead);
 						}
+					};
+					var tempStr=URL.rootPath !="" ? URL.rootPath :URL.basePath;
+					var tempUrl=url;
+					if (tempStr !="")
+						url=url.split(tempStr)[1];
+					if (!url){
+						url=tempUrl;
 					}
 					MiniFileMgr.read(url,encoding,new Handler(MiniLoader,MiniLoader.onReadNativeCallBack,[encoding,url,type,cache,group,ignoreCache,thisLoader]));
 					return;
@@ -1301,6 +1321,8 @@ var MiniSound=(function(_super){
 				tSound=MiniSound._createSound();
 			}
 		}
+		if(!tSound)
+			return null;
 		if(MiniAdpter.autoCacheFile&&MiniFileMgr.getFileInfo(this.url)){
 			var fileNativeUrl;
 			var fileObj=MiniFileMgr.getFileInfo(this.url);
@@ -1458,6 +1480,7 @@ var MiniSoundChannel=(function(_super){
 	var __proto=MiniSoundChannel.prototype;
 	/**@private **/
 	__proto.__onEnd=function(){
+		MiniSound._audioCache[this.url]=this._miniSound;
 		if (this.loops==1){
 			if (this.completeHandler){
 				Laya.systemTimer.once(10,this,this.__runComplete,[this.completeHandler],false);
@@ -1495,8 +1518,9 @@ var MiniSoundChannel=(function(_super){
 		this.completeHandler=null;
 		if (!this._audio)
 			return;
-		this._audio.pause();
+		this._audio.stop();
 		this._audio.offEnded(null);
+		this._miniSound.dispose();
 		this._audio=null;
 		this._miniSound=null;
 		this._onEnd=null;
