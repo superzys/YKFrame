@@ -1,4 +1,5 @@
 import BaseUI = YK.BaseUI
+import LoadingProgressEvenet from "../Defs/EventDef";
 export default  class LoadingWind extends YK.BaseUI
 {
     protected packName = "Loading"

@@ -16551,7 +16551,7 @@ var GRoot=(function(_super){
 				return;
 			}
 		}
-		if (this._modalLayer.parent !=null)
+		if (this._modalLayer !=null &&this._modalLayer.parent !=null)
 			this.removeChild(this._modalLayer);
 	}
 

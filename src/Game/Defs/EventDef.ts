@@ -9,7 +9,7 @@
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-class LoadingProgressEvenet extends YK.EventData
+export default  class LoadingProgressEvenet extends YK.EventData
 {
     public data: LoadingProgressData
     public static EventID = "LoadingProgressEvenet"

@@ -4,6 +4,7 @@ import EventData = YK.EventData
 import LoginScene from "./LoginScene";
 import WaitWind from "../Winds/WaitWind";
 import LoadingWind from "../Winds/LoadingWind";
+import LoadingProgressEvenet from "../Defs/EventDef";
 export default  class LoadingScene extends SceneBase
 {
     private initNeedLoadTask: YK.LoadGruopInfo
