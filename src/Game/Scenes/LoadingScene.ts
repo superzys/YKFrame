@@ -2,6 +2,8 @@ import ProtocolDef from "../Defs/ProtocolDef";
 import SceneBase = YK.SceneBase
 import EventData = YK.EventData
 import LoginScene from "./LoginScene";
+import WaitWind from "../Winds/WaitWind";
+import LoadingWind from "../Winds/LoadingWind";
 export default  class LoadingScene extends SceneBase
 {
     private initNeedLoadTask: YK.LoadGruopInfo

@@ -1,4 +1,9 @@
-class LoginWind extends YK.BaseUI
+import RoleMode from "../Modes/RoleMode";
+import LoadingWind from "./LoadingWind";
+import MessageBox from "./MessageBox";
+import MainScene from "../Scenes/MainScene";
+
+export default   class LoginWind extends YK.BaseUI
 {
     protected packName = "LoginPack"
     protected resName = "LoginWindow"
@@ -140,7 +145,7 @@ class LoginWind extends YK.BaseUI
         }
     }
 
-    protected OnHandler(ev: EventData)
+    protected OnHandler(ev: YK.EventData)
     {
         if (ev.cmd ==YK. ModeMgr.EventType.SENDINITMSGOK)
         {

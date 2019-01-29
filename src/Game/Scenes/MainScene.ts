@@ -1,3 +1,5 @@
+import MainWind from "../Winds/MainWind";
+
 export default  class MainScene extends YK.SceneBase
 {
     protected firstWind: any = MainWind

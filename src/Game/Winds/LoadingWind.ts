@@ -1,5 +1,5 @@
 import BaseUI = YK.BaseUI
-class LoadingWind extends YK.BaseUI
+export default  class LoadingWind extends YK.BaseUI
 {
     protected packName = "Loading"
     protected resName = "loadingWind"

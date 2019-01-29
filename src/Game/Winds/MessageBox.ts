@@ -1,4 +1,4 @@
-class MessageBox extends YK.BaseUI
+export default  class MessageBox extends YK.BaseUI
 {
     public modal: boolean = true
     public dontDel: boolean = true

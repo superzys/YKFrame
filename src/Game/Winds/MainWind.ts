@@ -1,5 +1,5 @@
 
-class MainWind extends BaseUI
+export default  class MainWind extends YK.BaseUI
 {
     protected packName = "MainPack"
     protected resName = "MainWindow"

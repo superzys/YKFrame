@@ -1,5 +1,6 @@
 import SceneBase = YK.SceneBase
 import EventData = YK.EventData
+import LoginWind from "../Winds/LoginWind";
 
 export default class LoginScene extends SceneBase
 {

@@ -1,5 +1,5 @@
 
-class WaitWind extends fairygui.GComponent
+export default  class WaitWind extends fairygui.GComponent
 {
     private lablMsg: fairygui.GTextField
     private state: fairygui.Controller
