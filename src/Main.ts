@@ -36,32 +36,32 @@ class Main {
 		fairygui.UIConfig.bringWindowToFrontOnClick = false
 		//加载IDE指定的场景
 		// GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);
-		this.initGame()
+		// this.initGame()
 
-		// Laya.loader.load([
-		//     { url: "res/external/BasePack_atlas0.png", type: Laya.Loader.IMAGE },
-		//     { url: "res/external/BasePack.bin", type:Laya. Loader.BUFFER },
-		//     { url: "res/source/Loading_atlas_vckm32.jpg", type: Laya.Loader.IMAGE },
-		//     { url: "res/source/Loading_atlas0.png", type: Laya.Loader.IMAGE },
-		//     { url: "res/source/Loading.bin", type:Laya. Loader.BUFFER },
-		//     { url: "res/external/GamePack_atlas0.png", type: Laya.Loader.IMAGE },
-		//     { url: "res/external/GamePack.bin", type:Laya. Loader.BUFFER },
-		//     { url: "res/external/LoginPack.bin", type:Laya. Loader.BUFFER }
-		// ], Laya.Handler.create(this, this.onLoaded));
+		Laya.loader.load([
+		    { url: "res/external/BasePack_atlas0.png", type: Laya.Loader.IMAGE },
+		    { url: "res/external/BasePack.bin", type:Laya. Loader.BUFFER },
+		    { url: "res/source/Loading_atlas_vckm32.jpg", type: Laya.Loader.IMAGE },
+		    { url: "res/source/Loading_atlas0.png", type: Laya.Loader.IMAGE },
+		    { url: "res/source/Loading.bin", type:Laya. Loader.BUFFER },
+		    { url: "res/external/GamePack_atlas0.png", type: Laya.Loader.IMAGE },
+		    { url: "res/external/GamePack.bin", type:Laya. Loader.BUFFER },
+		    { url: "res/external/LoginPack.bin", type:Laya. Loader.BUFFER }
+		], Laya.Handler.create(this, this.onLoaded));
 	}
 	//直接fgui测试 是没问题的
-	// onLoaded(){
-	// 	Laya.stage.addChild(fairygui.GRoot.inst.displayObject);
-	// 	fairygui.UIPackage.addPackage("res/external/BasePack");
-	// 	fairygui.UIPackage.addPackage("res/source/Loading");
-	// 	fairygui.UIPackage.addPackage("res/external/GamePack");
-	// 	fairygui.UIPackage.addPackage("res/external/LoginPack");
+	onLoaded(){
+		Laya.stage.addChild(fairygui.GRoot.inst.displayObject);
+		fairygui.UIPackage.addPackage("res/external/BasePack");
+		fairygui.UIPackage.addPackage("res/source/Loading");
+		fairygui.UIPackage.addPackage("res/external/GamePack");
+		fairygui.UIPackage.addPackage("res/external/LoginPack");
 
-	// 	let _view = fairygui.UIPackage.createObject("LoginPack", "LoginWindow");
-	//     _view.setSize(fairygui.GRoot.inst.width, fairygui.GRoot.inst.height);
-	//     fairygui.GRoot.inst.addChild(_view);
+		let _view = fairygui.UIPackage.createObject("LoginPack", "LoginWindow");
+	    _view.setSize(fairygui.GRoot.inst.width, fairygui.GRoot.inst.height);
+	    fairygui.GRoot.inst.addChild(_view);
 
-	// }
+	}
 	initGame()  {
 
 		fairygui.UIConfig.globalModalWaiting = "ui://Loading/waitWind"
